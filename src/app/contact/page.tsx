@@ -13,20 +13,47 @@ export default function ContactPage() {
     message: string;
   }>({ type: null, message: "" });
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
 
-    // Mock EmailJS submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus({
-        type: "success",
-        message: "Message sent successfully! I'll get back to you soon.",
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("user_name"),
+      email: formData.get("user_email"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
-      formRef.current?.reset();
-    }, 1500);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus({
+          type: "success",
+          message: "Message sent successfully! I'll get back to you soon.",
+        });
+        formRef.current?.reset();
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "An unexpected error occurred. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
