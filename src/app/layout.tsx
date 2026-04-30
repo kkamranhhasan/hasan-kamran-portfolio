@@ -35,14 +35,14 @@ export default function RootLayout({
           <SmoothScroll>
             {/* Global Wave Background */}
             <div className="fixed inset-0 -z-50 w-full h-full overflow-hidden bg-background pointer-events-none">
-              <div className="absolute bottom-0 left-0 w-[200%] h-[30vh] md:h-[40vh] opacity-70 dark:opacity-50 animate-wave">
+              <div className="absolute bottom-0 left-0 w-[200%] h-[30vh] md:h-[40vh] opacity-50 dark:opacity-30 animate-wave">
                 <svg className="w-full h-full" viewBox="0 0 2000 100" preserveAspectRatio="none">
-                  <path d="M0,50 C250,150 750,-50 1000,50 C1250,150 1750,-50 2000,50 L2000,100 L0,100 Z" fill="currentColor" className="text-primary/30 dark:text-primary/40"></path>
+                  <path d="M0,50 C250,150 750,-50 1000,50 C1250,150 1750,-50 2000,50 L2000,100 L0,100 Z" fill="currentColor" className="text-primary/20 dark:text-primary/30"></path>
                 </svg>
               </div>
-              <div className="absolute bottom-0 left-0 w-[200%] h-[35vh] md:h-[45vh] opacity-60 dark:opacity-40 animate-wave-reverse">
+              <div className="absolute bottom-0 left-0 w-[200%] h-[35vh] md:h-[45vh] opacity-40 dark:opacity-20 animate-wave-reverse">
                 <svg className="w-full h-full" viewBox="0 0 2000 100" preserveAspectRatio="none">
-                  <path d="M0,50 C250,150 750,-50 1000,50 C1250,150 1750,-50 2000,50 L2000,100 L0,100 Z" fill="currentColor" className="text-primary/40 dark:text-primary/50"></path>
+                  <path d="M0,50 C250,150 750,-50 1000,50 C1250,150 1750,-50 2000,50 L2000,100 L0,100 Z" fill="currentColor" className="text-primary/30 dark:text-primary/40"></path>
                 </svg>
               </div>
             </div>
