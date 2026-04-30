@@ -10,6 +10,7 @@ const EDUCATION = [
     school: "East West University",
     link: "https://ewubd.edu",
     logoDomain: "ewubd.edu",
+    customLogo: "/ewu-logo.png",
     duration: "Ongoing (Expected 2027)",
     description: "Currently pursuing a bachelor's degree in Computer Science and Engineering.",
   },
@@ -57,7 +58,7 @@ export default function EducationPage() {
               {/* Massive Floating Logo */}
               <div className="absolute -top-8 -right-4 md:-top-12 md:-right-8 lg:-top-16 lg:-right-12 w-24 h-24 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-[1.5rem] md:rounded-[2.5rem] bg-white shadow-2xl overflow-hidden border-8 border-background z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 flex items-center justify-center">
                 <img 
-                  src={`https://www.google.com/s2/favicons?domain=${edu.logoDomain}&sz=256`} 
+                  src={edu.customLogo || `https://www.google.com/s2/favicons?domain=${edu.logoDomain}&sz=256`} 
                   alt={`${edu.school} Logo`} 
                   className="w-full h-full object-contain p-4 md:p-8"
                   loading="lazy"
