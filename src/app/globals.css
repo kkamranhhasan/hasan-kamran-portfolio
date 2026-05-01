@@ -24,6 +24,9 @@
   --animate-pulse-slow: pulse-slow 6s ease-in-out infinite;
   --animate-wave: wave 15s linear infinite;
   --animate-wave-reverse: wave 20s linear infinite reverse;
+  --animate-rain: rain linear infinite;
+  --animate-lightning: lightning 10s infinite;
+  --animate-lightning-bolt: lightning-bolt 12s infinite;
 
   @keyframes fade-in {
     from { opacity: 0; filter: blur(10px); }
@@ -43,6 +46,26 @@
   @keyframes wave {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-50%); }
+  }
+
+  @keyframes rain {
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+  }
+
+  @keyframes lightning {
+    0%, 95%, 98%, 100% { opacity: 0; }
+    96%, 99% { opacity: 0.8; }
+    97% { opacity: 0.5; }
+  }
+
+  @keyframes lightning-bolt {
+    0%, 94%, 98%, 100% { opacity: 0; filter: brightness(1); }
+    95% { opacity: 1; filter: brightness(2) drop-shadow(0 0 20px white); }
+    96% { opacity: 0; }
+    97% { opacity: 1; filter: brightness(3) drop-shadow(0 0 30px white); }
   }
 
   --font-heading: var(--font-sans);

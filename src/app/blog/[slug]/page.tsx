@@ -9,23 +9,6 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const resolvedParams = await params;
-  const post = await getMarkdownData("blog", resolvedParams.slug).catch(() => null);
-
-  if (!post) {
-    return {
-      title: "Post Not Found",
-    };
-  }
-
-  return {
-    title: `${post.title} | Blog`,
-    description: post.excerpt,
-  };
-}
 
 export async function generateStaticParams() {
   const slugs = getAllMarkdownSlugs("blog");

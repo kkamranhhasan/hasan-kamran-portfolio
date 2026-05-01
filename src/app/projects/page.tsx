@@ -4,10 +4,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ScrollUp } from "@/components/ScrollUp";
 
-export const metadata = {
-  title: "Projects | Kamran Hasan",
-  description: "A collection of my recent work and projects.",
-};
 
 export default function ProjectsPage() {
   const projects = getSortedMarkdownData("projects");

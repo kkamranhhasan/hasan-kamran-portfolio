@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { WeatherProvider } from "@/components/WeatherProvider";
+import { RainOverlay } from "@/components/RainOverlay";
+import { MoonBackground } from "@/components/MoonBackground";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -10,7 +13,7 @@ import { cn } from "@/lib/utils";
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "Kamran Hasan - Portfolio",
+  title: "Kamran Hasan",
   description: "Personal portfolio of Kamran Hasan, a software engineer specializing in modern web experiences.",
 };
 
@@ -32,8 +35,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SmoothScroll>
-            {/* Global Wave Background */}
+          <WeatherProvider>
+            <SmoothScroll>
+              <MoonBackground />
+              <RainOverlay />
+              {/* Global Wave Background */}
             <div className="fixed inset-0 -z-50 w-full h-full overflow-hidden bg-background pointer-events-none">
               <div className="absolute bottom-0 left-0 w-[200%] h-[30vh] md:h-[40vh] opacity-50 dark:opacity-30 animate-wave">
                 <svg className="w-full h-full" viewBox="0 0 2000 100" preserveAspectRatio="none">
@@ -52,7 +58,8 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
-          </SmoothScroll>
+            </SmoothScroll>
+          </WeatherProvider>
         </ThemeProvider>
       </body>
     </html>

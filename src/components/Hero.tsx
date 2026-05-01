@@ -46,11 +46,11 @@ export function Hero() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/resume.pdf"
+                  href="/Kamran_Hasan_CV.pdf"
                   target="_blank"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-background px-8 text-sm font-medium shadow-sm transition-transform hover:scale-105 hover:bg-muted focus-visible:outline-none gap-2"
                 >
-                  Download Resume
+                  Download CV
                   <Download className="w-4 h-4" />
                 </Link>
               </div>

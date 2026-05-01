@@ -3,10 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar } from "lucide-react";
 
-export const metadata = {
-  title: "Blog | Kamran",
-  description: "Writing about web development, design, and technology.",
-};
 
 export default function BlogPage() {
   const posts = getSortedMarkdownData("blog");

@@ -6,15 +6,18 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ThemeToggle } from "./ThemeToggle";
+import { WeatherToggle } from "./WeatherToggle";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
   { name: "Projects", href: "/projects" },
   { name: "Work", href: "/work" },
   { name: "Education", href: "/education" },
   { name: "Skills", href: "/skills" },
+  { name: "Hobbies", href: "/hobbies" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
@@ -51,11 +54,13 @@ export function Navbar() {
               {item.name}
             </Link>
           ))}
+          <WeatherToggle />
           <ThemeToggle />
         </nav>
 
         {/* Mobile Nav Toggle */}
         <div className="flex items-center gap-4 md:hidden">
+          <WeatherToggle />
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}

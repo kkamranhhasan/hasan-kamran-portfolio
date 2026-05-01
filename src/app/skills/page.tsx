@@ -2,30 +2,35 @@
 
 import { ScrollUp } from "@/components/ScrollUp";
 
+import { 
+  SiReact, SiTypescript, SiTailwindcss, SiFramer, 
+  SiNodedotjs, SiPostgresql, SiFirebase, SiGithub, SiVercel, SiFigma 
+} from "react-icons/si";
+
 const SKILLS = [
   {
     category: "Frontend",
     items: [
-      { name: "React / Next.js", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "Tailwind CSS", level: 95 },
-      { name: "Framer Motion", level: 85 },
+      { name: "React / Next.js", level: 95, icon: SiReact },
+      { name: "TypeScript", level: 90, icon: SiTypescript },
+      { name: "Tailwind CSS", level: 95, icon: SiTailwindcss },
+      { name: "Framer Motion", level: 85, icon: SiFramer },
     ],
   },
   {
     category: "Backend & Database",
     items: [
-      { name: "Node.js", level: 80 },
-      { name: "PostgreSQL", level: 75 },
-      { name: "Firebase", level: 85 },
+      { name: "Node.js", level: 80, icon: SiNodedotjs },
+      { name: "PostgreSQL", level: 75, icon: SiPostgresql },
+      { name: "Firebase", level: 85, icon: SiFirebase },
     ],
   },
   {
     category: "Tools & DevOps",
     items: [
-      { name: "Git & GitHub", level: 90 },
-      { name: "Vercel / Netlify", level: 90 },
-      { name: "Figma", level: 80 },
+      { name: "Git & GitHub", level: 90, icon: SiGithub },
+      { name: "Vercel / Netlify", level: 90, icon: SiVercel },
+      { name: "Figma", level: 80, icon: SiFigma },
     ],
   },
 ];
@@ -57,9 +62,10 @@ export default function SkillsPage() {
                 {skillGroup.items.map((skill) => (
                   <div 
                     key={skill.name} 
-                    className="px-5 py-2.5 rounded-full border border-border/50 bg-background/50 backdrop-blur-md text-sm md:text-base font-bold text-muted-foreground hover:text-foreground hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(var(--primary),0.15)] cursor-default"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border/50 bg-background/50 backdrop-blur-md text-sm md:text-base font-bold text-muted-foreground hover:text-foreground hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(var(--primary),0.15)] cursor-default group/skill"
                   >
-                    {skill.name}
+                    <skill.icon className="text-lg md:text-xl transition-transform group-hover/skill:scale-110" />
+                    <span>{skill.name}</span>
                   </div>
                 ))}
               </div>

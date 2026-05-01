@@ -10,23 +10,6 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const resolvedParams = await params;
-  const project = await getMarkdownData("projects", resolvedParams.slug).catch(() => null);
-
-  if (!project) {
-    return {
-      title: "Project Not Found",
-    };
-  }
-
-  return {
-    title: `${project.title} | Projects`,
-    description: project.description,
-  };
-}
 
 export async function generateStaticParams() {
   const slugs = getAllMarkdownSlugs("projects");
