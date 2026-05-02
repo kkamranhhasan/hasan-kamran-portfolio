@@ -1,9 +1,9 @@
 "use client";
 
-import { ArrowRight, Download } from "lucide-react";
-import Link from "next/link";
+
 import Image from "next/image";
 import { ScrollUp } from "@/components/ScrollUp";
+import { FizzyButton } from "@/components/FizzyButton";
 
 export function Hero() {
   return (
@@ -38,21 +38,8 @@ export function Hero() {
 
             <ScrollUp delay={0.3} duration={1} y={30}>
               <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
-                <Link
-                  href="/projects"
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-foreground px-8 text-sm font-medium text-background shadow transition-transform hover:scale-105 focus-visible:outline-none gap-2"
-                >
-                  Explore My Work
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/Kamran_Hasan_CV.pdf"
-                  target="_blank"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-background px-8 text-sm font-medium shadow-sm transition-transform hover:scale-105 hover:bg-muted focus-visible:outline-none gap-2"
-                >
-                  Download CV
-                  <Download className="w-4 h-4" />
-                </Link>
+
+                <FizzyButton />
               </div>
             </ScrollUp>
           </div>

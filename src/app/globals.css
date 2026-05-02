@@ -243,4 +243,79 @@ body {
   body {
     @apply bg-background text-foreground;}
   html {
-    @apply font-sans;}}
+    @apply font-sans;}
+}
+
+/* Neo Brutalist Submit Button */
+.neo-submit-button {
+  --btn-color: var(--foreground);
+  --btn-bg: var(--background);
+  --btn-focus: var(--primary);
+  
+  outline: none;
+  transition: transform 0.2s cubic-bezier(.3, .7, .4, 1);
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  position: relative;
+  font-size: 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+.neo-submit-button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.neo-submit-button:focus-visible span {
+  outline: 3px dashed var(--btn-focus);
+  outline-offset: 3px;
+}
+
+.neo-submit-button span {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: 3px solid var(--btn-color);
+  padding: 0.8em 1.6em;
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-submit-button::before,
+.neo-submit-button::after,
+.neo-submit-button span::before,
+.neo-submit-button span {
+  transition: inherit;
+  border-radius: inherit;
+  box-shadow: 1px 1px 0px 0px var(--btn-color), 2px 2px 0px 0px var(--btn-color), 3px 3px 0px 0px var(--btn-color);
+}
+
+.neo-submit-button::before,
+.neo-submit-button::after,
+.neo-submit-button span::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+}
+
+.neo-submit-button::before {
+  transform: translate(2px, 2px);
+}
+
+.neo-submit-button:hover span {
+  transform: translate(-2px, -2px);
+}
+
+.neo-submit-button:active span,
+.neo-submit-button:active::after {
+  transform: translate(2px, 2px);
+}

@@ -186,10 +186,12 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-50 disabled:pointer-events-none gap-2"
+                className="neo-submit-button"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                {!isSubmitting && <Send size={18} />}
+                <span>
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {!isSubmitting && <Send size={18} />}
+                </span>
               </button>
             </form>
           </div>
