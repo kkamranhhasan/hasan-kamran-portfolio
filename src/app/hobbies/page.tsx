@@ -5,9 +5,10 @@ import { ScrollUp } from "@/components/ScrollUp";
 import { 
   Camera, BookOpen, Plane, Music, X, Play,
   PenTool, Video, Terminal, Globe, Lightbulb, Users,
-  Puzzle, Microscope, Languages, Bike, Trophy
+  Puzzle, Microscope, Languages, Bike, Trophy, MapPin, ExternalLink
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const HOBBIES = [
   {
@@ -151,6 +152,69 @@ const HOBBIES = [
     icon: Plane,
     color: "text-orange-500",
     bg: "bg-orange-500/10",
+    travelLocations: [
+      {
+        region: "Sylhet",
+        places: [
+          { name: "Jaflong Zero Point", description: "Beautiful river and stone view surrounded by hills", link: "https://www.google.com/maps/search/Jaflong+Zero+Point", emoji: "⛰️" },
+          { name: "Mayabi Jharna", description: "A serene waterfall nestled in the lush green hills", link: "https://www.google.com/maps/search/Mayabi+Jharna", emoji: "🌊" },
+          { name: "Jaflong Tea Garden", description: "Expansive and peaceful tea estates", link: "https://www.google.com/maps/search/Jaflong+Tea+Garden", emoji: "🍃" },
+          { name: "Shahjalal Mazar", description: "A famous and highly revered spiritual shrine", link: "https://www.google.com/maps/search/Shahjalal+Mazar", emoji: "🕌" },
+          { name: "Ratargul Swamp Forest", description: "The only freshwater swamp forest in Bangladesh", link: "https://www.google.com/maps/search/Ratargul+Swamp+Forest", emoji: "🌳" }
+        ]
+      },
+      {
+        region: "Bandarban",
+        places: [
+          { name: "Nilgiri", description: "Stunning mountain peak touching the clouds", link: "https://www.google.com/maps/search/Nilgiri+Bandarban", emoji: "🌁" },
+          { name: "Nilachal", description: "A scenic viewpoint offering panoramic views of the hills", link: "https://www.google.com/maps/search/Nilachal", emoji: "🌄" },
+          { name: "Buddha Dhatu Jadi", description: "The famous Golden Temple of Bandarban", link: "https://www.google.com/maps/search/Buddha+Dhatu+Jadi", emoji: "🛕" }
+        ]
+      },
+      {
+        region: "Cox’s Bazar",
+        places: [
+          { name: "Cox’s Bazar Sea Beach", description: "The longest natural sea beach in the world", link: "https://www.google.com/maps/search/Cox’s+Bazar+Sea+Beach", emoji: "🏖️" },
+          { name: "Inani Beach", description: "Famous for its golden sand and coral stones", link: "https://www.google.com/maps/search/Inani+Beach", emoji: "🐚" },
+          { name: "Himchari", description: "Known for its beautiful waterfalls and marine drive", link: "https://www.google.com/maps/search/Himchari", emoji: "🌊" },
+          { name: "Laboni Beach", description: "The main and most popular beach point in Cox's Bazar", link: "https://www.google.com/maps/search/Laboni+Beach", emoji: "🏄" },
+          { name: "Saint Martin’s Island", description: "The only coral island in Bangladesh with crystal clear water", link: "https://www.google.com/maps/search/Saint+Martin’s+Island", emoji: "🏝️" }
+        ]
+      },
+      {
+        region: "Sundarbans",
+        places: [
+          { name: "Sundarbans Mangrove Forest", description: "The largest mangrove forest and home to the Royal Bengal Tiger", link: "https://www.google.com/maps/search/Sundarbans", emoji: "🐅" }
+        ]
+      },
+      {
+        region: "Kuakata",
+        places: [
+          { name: "Kuakata Sea Beach", description: "Famous for its panoramic view of both sunrise and sunset", link: "https://www.google.com/maps/search/Kuakata+Sea+Beach", emoji: "🌅" },
+          { name: "Fatrar Char", description: "A pristine mangrove forest part of the Sundarbans", link: "https://www.google.com/maps/search/Fatrar+Char", emoji: "🌴" },
+          { name: "Gangamati Reserved Forest", description: "An evergreen mangrove forest on the eastern end of the beach", link: "https://www.google.com/maps/search/Gangamati+Reserved+Forest", emoji: "🌲" },
+          { name: "Lebur Char", description: "A sandy spit covered with mangrove trees", link: "https://www.google.com/maps/search/Lebur+Char", emoji: "🏖️" },
+          { name: "Jhaubon", description: "A scenic forest of Jhau trees close to the beach", link: "https://www.google.com/maps/search/Jhaubon", emoji: "🏕️" }
+        ]
+      },
+      {
+        region: "Barishal",
+        places: [
+          { name: "Durga Sagar", description: "The largest pond in southern Bangladesh", link: "https://www.google.com/maps/search/Durga+Sagar", emoji: "🏞️" },
+          { name: "Guthia Mosque", description: "A stunning architectural masterpiece and mosque complex", link: "https://www.google.com/maps/search/Guthia+Mosque", emoji: "🕌" },
+          { name: "Floating Guava Market", description: "A unique and vibrant floating market on the backwaters", link: "https://www.google.com/maps/search/Floating+Guava+Market", emoji: "🛶" },
+          { name: "Baitul Aman Jame Masjid", description: "A magnificent and beautifully designed mosque", link: "https://www.google.com/maps/search/Baitul+Aman+Jame+Masjid", emoji: "🕌" }
+        ]
+      },
+      {
+        region: "Gopalganj",
+        places: [
+          { name: "Tungipara", description: "The Mausoleum of the Father of the Nation, Bangabandhu", link: "https://www.google.com/maps/search/Tungipara+Mausoleum", emoji: "🏛️" },
+          { name: "Ulpur Zamindar Bari", description: "A historic palace with incredible colonial architecture", link: "https://www.google.com/maps/search/Ulpur+Zamindar+Bari", emoji: "🏰" },
+          { name: "Kotalipara Archaeological Sites", description: "Ancient forts and historical ruins", link: "https://www.google.com/maps/search/Kotalipara+Archaeological+Sites", emoji: "🏺" }
+        ]
+      }
+    ]
   },
   {
     id: 9,
@@ -226,6 +290,7 @@ const HOBBIES = [
 
 export default function HobbiesPage() {
   const [selectedHobby, setSelectedHobby] = useState<any | null>(null);
+  const router = useRouter();
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -258,7 +323,13 @@ export default function HobbiesPage() {
               className="w-full h-full"
             >
               <div 
-                onClick={() => setSelectedHobby(hobby)}
+                onClick={() => {
+                  if (hobby.title === "Traveling") {
+                    router.push("/travel");
+                  } else {
+                    setSelectedHobby(hobby);
+                  }
+                }}
                 className="group h-full p-8 rounded-[2rem] border border-border bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col items-start text-left cursor-pointer hover:-translate-y-1"
               >
                 
@@ -300,7 +371,7 @@ export default function HobbiesPage() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className={`w-full ${selectedHobby.playlists ? 'max-w-5xl' : 'max-w-2xl'} max-h-[90vh] overflow-y-auto custom-scrollbar bg-card border border-border shadow-2xl rounded-[2rem] p-6 md:p-10 pointer-events-auto relative`}
+                className={`w-full ${selectedHobby.playlists || selectedHobby.travelLocations ? 'max-w-5xl' : 'max-w-2xl'} max-h-[90vh] overflow-y-auto custom-scrollbar bg-card border border-border shadow-2xl rounded-[2rem] p-6 md:p-10 pointer-events-auto relative`}
               >
                 {/* Modal Background Glow */}
                 <div className={`absolute top-0 right-0 w-64 h-64 ${selectedHobby.bg} rounded-full blur-[80px] -z-10 opacity-50`} />
@@ -312,13 +383,35 @@ export default function HobbiesPage() {
                   <X size={20} />
                 </button>
 
-                <div className={`inline-flex p-4 rounded-2xl ${selectedHobby.bg} ${selectedHobby.color} mb-6`}>
-                  <selectedHobby.icon size={40} strokeWidth={1.5} />
-                </div>
+                {selectedHobby.title === "Traveling" ? (
+                  <div className="w-full h-48 md:h-64 rounded-2xl mb-8 relative overflow-hidden group">
+                    <img 
+                      src="/travel-bg.jpg" 
+                      alt="Travel Background" 
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                    
+                    <div className="absolute bottom-6 left-6 flex items-end gap-4 z-10">
+                      <div className={`inline-flex p-3 rounded-xl ${selectedHobby.bg} ${selectedHobby.color} backdrop-blur-md bg-white/10 dark:bg-black/20`}>
+                        <selectedHobby.icon size={32} strokeWidth={1.5} />
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-extrabold text-foreground drop-shadow-md">
+                        {selectedHobby.title}
+                      </h2>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className={`inline-flex p-4 rounded-2xl ${selectedHobby.bg} ${selectedHobby.color} mb-6`}>
+                      <selectedHobby.icon size={40} strokeWidth={1.5} />
+                    </div>
 
-                <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4 pr-12">
-                  {selectedHobby.title}
-                </h2>
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4 pr-12">
+                      {selectedHobby.title}
+                    </h2>
+                  </>
+                )}
                 
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
                   {selectedHobby.details}
@@ -376,6 +469,48 @@ export default function HobbiesPage() {
                                 <span className="text-sm font-semibold text-foreground line-clamp-2 leading-snug group-hover/song:text-primary transition-colors">
                                   {song.title}
                                 </span>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Custom Content for Travel Locations */}
+                {selectedHobby.travelLocations && (
+                  <div className="mt-10 border-t border-border/50 pt-10">
+                    <h4 className="text-2xl font-bold text-foreground mb-8">Places I Have Visited</h4>
+                    <div className="space-y-12">
+                      {selectedHobby.travelLocations.map((region: any) => (
+                        <div key={region.region}>
+                          <h5 className="text-xl font-bold text-foreground/90 mb-5 flex items-center gap-2 border-l-4 border-primary pl-3 rounded-sm">
+                            {region.region}
+                          </h5>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                            {region.places.map((place: any) => (
+                              <a 
+                                key={place.name} 
+                                href={place.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group/place flex flex-col p-5 relative rounded-2xl border border-border/50 bg-card hover:bg-accent/50 hover:border-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
+                              >
+                                <div className="flex justify-between items-start mb-4 gap-4">
+                                  <div className="flex items-start gap-3">
+                                    <div className="text-2xl bg-muted/50 p-2.5 rounded-xl group-hover/place:bg-primary/10 group-hover/place:scale-110 transition-all duration-300 shrink-0">
+                                      {place.emoji}
+                                    </div>
+                                    <span className="text-lg font-bold text-foreground group-hover/place:text-primary transition-colors leading-tight mt-1.5">
+                                      {place.name}
+                                    </span>
+                                  </div>
+                                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover/place:text-primary transition-colors opacity-0 group-hover/place:opacity-100 shrink-0 mt-2" />
+                                </div>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                  {place.description}
+                                </p>
                               </a>
                             ))}
                           </div>
