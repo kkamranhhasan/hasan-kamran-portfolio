@@ -113,7 +113,7 @@ export function RadarChart() {
           const p = getPoint(120, index); // Push text out further than 100%
           
           // Small adjustments to text alignment based on position
-          let textAnchor = "middle";
+          let textAnchor: "middle" | "start" | "end" = "middle";
           if (p.x < center - 10) textAnchor = "end";
           if (p.x > center + 10) textAnchor = "start";
 
@@ -122,7 +122,7 @@ export function RadarChart() {
           if (p.y > center + 10) yAdjust = 10;
 
           // Shorten names for the chart
-          let label = d.category;
+          let label: string = d.category;
           if (label === "AI / Machine Learning") label = "AI / ML";
           if (label === "Tools & DevOps") label = "DevOps";
 
